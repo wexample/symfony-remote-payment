@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Wexample\SymfonyRemotePayment\Service\PaymentProviderRegistry:
+        public: true
+        arguments:
+            $providers: !tagged_iterator wexample_symfony_remote_payment.provider
