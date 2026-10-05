@@ -3,7 +3,7 @@
   "description": "Payment provider contracts: collect payments, read webhooks, read the merchant balance for bookkeeping",
   "type": "library",
   "license": "MIT",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "autoload": {
     "psr-4": {
       "Wexample\\SymfonyRemotePayment\\": "src/"
@@ -22,7 +22,7 @@
   ],
   "require": {
     "php": ">=8.5",
-    "wexample/symfony-helpers": ">=13.0.0",
+    "wexample/symfony-helpers": ">=14.0.0",
     "wexample/symfony-remote": ">=2.0.0"
   },
   "require-dev": {
