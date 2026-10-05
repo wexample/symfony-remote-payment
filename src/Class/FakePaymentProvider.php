@@ -95,8 +95,15 @@ class FakePaymentProvider implements PaymentGatewayInterface, WebhookParserInter
             : ProviderPaymentStatus::PartiallyRefunded;
 
         $this->payments[$providerReference] = new ProviderPayment(
-            $providerReference, $status, $payment->amount, $payment->currencyCode,
-            $payment->amountReceived, $refunded, $payment->chargeReference, $payment->method, $payment->datePaid,
+            $providerReference,
+            $status,
+            $payment->amount,
+            $payment->currencyCode,
+            $payment->amountReceived,
+            $refunded,
+            $payment->chargeReference,
+            $payment->method,
+            $payment->datePaid,
         );
 
         $refundReference = $this->name.'_re_'.++$this->sequence;
@@ -124,8 +131,15 @@ class FakePaymentProvider implements PaymentGatewayInterface, WebhookParserInter
         $charge = $this->name.'_ch_'.++$this->sequence;
 
         $this->payments[$providerReference] = new ProviderPayment(
-            $providerReference, ProviderPaymentStatus::Succeeded, $payment->amount, $payment->currencyCode,
-            $payment->amount, 0, $charge, $payment->method, $date,
+            $providerReference,
+            ProviderPaymentStatus::Succeeded,
+            $payment->amount,
+            $payment->currencyCode,
+            $payment->amount,
+            0,
+            $charge,
+            $payment->method,
+            $date,
         );
 
         $this->movements[] = new BalanceMovement(
@@ -227,9 +241,16 @@ class FakePaymentProvider implements PaymentGatewayInterface, WebhookParserInter
         $payment = $this->fetch($providerReference);
 
         return $this->payments[$providerReference] = new ProviderPayment(
-            $providerReference, $status, $payment->amount, $payment->currencyCode,
-            $payment->amountReceived, $payment->amountRefunded, $payment->chargeReference,
-            $payment->method, $payment->datePaid, $failureMessage,
+            $providerReference,
+            $status,
+            $payment->amount,
+            $payment->currencyCode,
+            $payment->amountReceived,
+            $payment->amountRefunded,
+            $payment->chargeReference,
+            $payment->method,
+            $payment->datePaid,
+            $failureMessage,
         );
     }
 

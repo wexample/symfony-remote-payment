@@ -10,14 +10,13 @@ use Wexample\SymfonyRemotePayment\Enum\BalanceMovementType;
 use Wexample\SymfonyRemotePayment\Enum\ProviderPaymentStatus;
 use Wexample\SymfonyRemotePayment\Exception\InvalidWebhookException;
 use Wexample\SymfonyRemotePayment\Interface\BalanceReaderInterface;
-use Wexample\SymfonyRemotePayment\Interface\PaymentProviderInterface;
 use Wexample\SymfonyRemotePayment\Service\PaymentProviderRegistry;
 
 class RegistryTest extends TestCase
 {
     public function testCapabilitiesAreFoundSeparately(): void
     {
-        $readOnlyBank = new class() implements BalanceReaderInterface {
+        $readOnlyBank = new class () implements BalanceReaderInterface {
             public function getName(): string
             {
                 return 'bank';
