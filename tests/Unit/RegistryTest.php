@@ -10,6 +10,7 @@ use Wexample\SymfonyRemotePayment\Enum\BalanceMovementType;
 use Wexample\SymfonyRemotePayment\Enum\ProviderPaymentStatus;
 use Wexample\SymfonyRemotePayment\Exception\InvalidWebhookException;
 use Wexample\SymfonyRemotePayment\Interface\BalanceReaderInterface;
+use Wexample\SymfonyRemotePayment\Interface\BrowserConfirmationInterface;
 use Wexample\SymfonyRemotePayment\Service\PaymentProviderRegistry;
 
 class RegistryTest extends TestCase
@@ -38,6 +39,32 @@ class RegistryTest extends TestCase
 
         $this->expectException(\InvalidArgumentException::class);
         $registry->getGateway('bank');
+    }
+
+    public function testABrowserConfirmationIsFoundForTheProviderOfferingIt(): void
+    {
+        $confirming = new class () implements BrowserConfirmationInterface {
+            public function getName(): string
+            {
+                return 'confirming';
+            }
+
+            public function getBrowserConfirmationComponent(): string
+            {
+                return '@Bundle/components/form';
+            }
+
+            public function getBrowserConfirmationOptions(): array
+            {
+                return ['publicKey' => 'pk'];
+            }
+        };
+
+        $registry = new PaymentProviderRegistry([new FakePaymentProvider('fake'), $confirming]);
+
+        $this->assertSame('@Bundle/components/form', $registry->findBrowserConfirmation('confirming')?->getBrowserConfirmationComponent());
+        $this->assertNull($registry->findBrowserConfirmation('fake'));
+        $this->assertNull($registry->findBrowserConfirmation('unknown'));
     }
 
     public function testZeroAmountIsRefused(): void

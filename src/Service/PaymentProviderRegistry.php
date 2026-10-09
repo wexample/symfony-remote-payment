@@ -3,6 +3,7 @@
 namespace Wexample\SymfonyRemotePayment\Service;
 
 use Wexample\SymfonyRemotePayment\Interface\BalanceReaderInterface;
+use Wexample\SymfonyRemotePayment\Interface\BrowserConfirmationInterface;
 use Wexample\SymfonyRemotePayment\Interface\PaymentGatewayInterface;
 use Wexample\SymfonyRemotePayment\Interface\PaymentProviderInterface;
 use Wexample\SymfonyRemotePayment\Interface\WebhookParserInterface;
@@ -46,6 +47,15 @@ class PaymentProviderRegistry
     public function getBalanceReader(string $name): BalanceReaderInterface
     {
         return $this->get($name, BalanceReaderInterface::class);
+    }
+
+    /**
+     * The provider confirming its payments in the browser, or null for one
+     * that does not — whose payer is redirected, or pays by hand.
+     */
+    public function findBrowserConfirmation(string $name): ?BrowserConfirmationInterface
+    {
+        return $this->all(BrowserConfirmationInterface::class)[$name] ?? null;
     }
 
     /**
