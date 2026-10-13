@@ -1,6 +1,6 @@
 # symfony-remote-payment
 
-Version: 2.0.3
+Version: 3.0.0
 
 ## Providers
 
@@ -33,7 +33,7 @@ Visit the [Wexample Suite documentation](https://docs.wexample.com) for the comp
 ## Dependencies
 
 - php: >=8.5
-- wexample/symfony-helpers: >=15.0.0
+- wexample/symfony-helpers: >=16.0.0
 - wexample/symfony-remote: >=2.0.0
 
 ## Versioning & Compatibility Policy
