@@ -1,6 +1,6 @@
 # symfony-remote-payment
 
-Version: 3.0.2
+Version: 3.0.3
 
 ## Providers
 
@@ -31,7 +31,7 @@ The suite includes packages for configuration management, file handling, prompts
 ## Dependencies
 
 - php: >=8.5
-- wexample/symfony-helpers: >=17.0.0
+- wexample/symfony-helpers: >=18.0.0
 - wexample/symfony-remote: >=2.0.0
 
 ## Versioning & Compatibility Policy
