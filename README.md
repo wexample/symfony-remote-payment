@@ -1,6 +1,6 @@
 # symfony-remote-payment
 
-Version: 3.0.6
+Version: 3.0.7
 
 Payment provider contracts: collect payments, read webhooks, read the merchant balance for bookkeeping
 
